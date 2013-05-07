@@ -1,13 +1,12 @@
 <html>
   <head>
   	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="stretch-goal.css">
+		<link rel="stylesheet" type="text/css" href="/stretch-goal.css">
   </head>
 	<body>
 		<div id="custom-sg">
 		  <div id="sg-explain">
-		  	<h3>Fully funded, but far from finished.</h3>
-		  	<div>We've hit our first target - thank you so much! Now we're going for the stretch. <a href="">Click here</a> to read about what will happen if we hit this target!</div>
+		  	<%- explain %>
 		  </div>
 		  <div id="sg-display">
 		    <div id="sg-progress">
@@ -15,15 +14,32 @@
 		    </div>
 		    <div id="sg-meta">
 		    	<div id="sg-percent">
-		    		<div class="sg-meta-value"></div>
+		    		<div class="sg-meta-value"><%- percent %>%</div>
 		    		<div class="sg-meta-msg">funded</div>
 		    	</div>
 		    	<div id="sg-goal">
-		    		<div class="sg-meta-value"></div>
+		    		<div class="sg-meta-value"><%- goal %></div>
 		    		<div class="sg-meta-msg">stretch goal</div>
 		    	</div>
 		    </div>
 		  </div>
 		</div>
+		<script>
+			Number.prototype.formatMoney = function(c, d, t){
+			  var n = this, 
+			  c = isNaN(c = Math.abs(c)) ? 2 : c, 
+			  d = d == undefined ? "." : d, 
+			  t = t == undefined ? "," : t, 
+			  s = n < 0 ? "-" : "", 
+			  i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+			  j = (j = i.length) > 3 ? j % 3 : 0;
+			  return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+			};
+
+			var goal = (<%- goal %>).formatMoney(0, '.', ',');
+			$("#sg-goal .sg-meta-value").html(goal);
+
+      $("#sg-progress-bar").css("width", "<%- percent %>%");
+		</script>
 	</body>
 </html>

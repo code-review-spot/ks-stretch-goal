@@ -1,6 +1,14 @@
+h3{
+  margin: 0;
+}
+
 #custom-sg {
   padding: 15px;
   background-color: #efefef;
+}
+
+#sg-explain{
+  margin-bottom: 15px;
 }
 
 #sg-progress {
@@ -13,7 +21,7 @@
   height: 12px;
   background-color: #76cc1e;
   border-radius: 25px;
-  width: 10%;
+  width: 0%;
 }
 
 #sg-meta {

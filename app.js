@@ -1,22 +1,26 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
-  , util = require('util')
-  , nconf = require('nconf')
-  , configurations = module.exports
-  , app = express()
-  , server = require('http').createServer(app)
-  , settings = require('./settings')(app, configurations, express);
+var path = require('path');
 
-nconf.argv().env().file({ file: 'local.json' });
+var app = express();
+
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
+});
 
 require('./routes')(app);
 
-var port = process.env.PORT || nconf.get('port');
+var server = require('http').createServer(app)
+
+var port = process.env.PORT || 3000;
 server.listen(port);
 
-util.log("Listening port "+port);
+console.log("Listening port "+port);
 
