@@ -1,0 +1,44 @@
+#custom-sg {
+  padding: 15px;
+  background-color: #efefef;
+}
+
+#sg-progress {
+  height: 12px;
+  background-color: #cccccc;
+  border-radius: 25px;
+}
+
+#sg-progress-bar {
+  height: 12px;
+  background-color: #76cc1e;
+  border-radius: 25px;
+  width: 10%;
+}
+
+#sg-meta {
+  margin-top: 15px;
+  height: 45px;
+}
+
+#sg-percent {
+  padding-right: 15px;
+  float: left;
+  padding-right: 7px;
+}
+
+#sg-goal {
+  padding-left: 15px;
+  border-left: solid 1px #cccccc;
+  float: left;
+  padding-right: 7px;
+}
+
+.sg-meta-value {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.sg-meta-msg {
+  color: #aaaaaa;
+}
