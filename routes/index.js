@@ -9,7 +9,6 @@ module.exports = function(app) {
     var data = {};
     data.goal = req.body.goal;
     data.project_url = req.body.url;
-    data.curency = req.body.curency;
     data.explain = req.body.explain;
 
     var callback = function(err, model){
