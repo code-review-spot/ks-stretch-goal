@@ -1,15 +1,50 @@
+var DB = require('../lib/model');
+
 module.exports = function(app) {
   app.get('/', function(req, res) {
-      res.send('soon to come');
+      res.render('new');
+  });
+
+  app.post('/new', function(req, res){
+    var data = {};
+    data.goal = req.body.goal;
+    data.project_url = req.body.url;
+    data.curency = req.body.curency;
+    data.explain = req.body.explain;
+
+    var callback = function(err, model){
+      if(err){
+        res.json(err);
+      }
+      else{
+        console.log(model);
+        res.method = "get";
+        res.redirect('/display/'+model.id);
+      }
+    }
+
+    DB.new(data, callback);
+
+  });
+
+  app.get('/display/:embed_id', function(req, res){
+    res.render('display', {id:req.params.embed_id});
   });
 
   app.get('/embed/:embed_id', function(req, res){
 
-  	var data = {};
-  	data.explain = '<h3>Fully funded, but far from finished.</h3><div>We\'ve hit our first target - thank you so much! Now we\'re going for the stretch. <a href="">Click here</a> to read about what will happen if we hit this target!</div>';
-  	data.goal = 250000;
-  	data.percent = 55;
+    var embed = function(err, model){
+      if(err){
+        res.json(err);
+      }
+      else{
+        model.update(function(err, model){
+          console.log(model);
+          res.render('embed', model);
+        });
+      }
+    }
 
-  	res.render('embed', data);
+    DB.get(req.params.embed_id, embed);
   });
 }
