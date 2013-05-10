@@ -2,7 +2,11 @@ var DB = require('../lib/model');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
-      res.render('new');
+      res.render('home');
+  });
+
+  app.get('/new', function(req, res){
+    res.render('new');
   });
 
   app.post('/new', function(req, res){
