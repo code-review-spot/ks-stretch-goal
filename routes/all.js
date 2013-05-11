@@ -1,9 +1,12 @@
-var DB = require('../lib/model');
+var image = require('./image');
+var embed = require('./embed');
 
 module.exports = function(app) {
+
   app.get('/', function(req, res) {
       res.render('home');
   });
+
 
   app.get('/new', function(req, res){
     res.render('new');
@@ -30,24 +33,13 @@ module.exports = function(app) {
 
   });
 
+
   app.get('/display/:embed_id', function(req, res){
     res.render('display', {id:req.params.embed_id});
   });
 
-  app.get('/embed/:embed_id', function(req, res){
+  app.get('/embed/:embed_id', embed.get);
 
-    var embed = function(err, model){
-      if(err){
-        res.json(err);
-      }
-      else{
-        model.update(function(err, model){
-          console.log(model);
-          res.render('embed', model);
-        });
-      }
-    }
 
-    DB.get(req.params.embed_id, embed);
-  });
+  app.get('/image/:embed_id', image.get);
 }

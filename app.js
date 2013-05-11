@@ -1,5 +1,9 @@
+DB = require('./lib/model');
+FS = require('fs');
+
 var express = require('express')
 var path = require('path');
+
 
 var app = express();
 
@@ -15,7 +19,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-require('./routes')(app);
+require('./routes/all')(app);
 
 var server = require('http').createServer(app)
 
