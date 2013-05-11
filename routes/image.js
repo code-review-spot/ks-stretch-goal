@@ -7,7 +7,19 @@ var drawImage = function(res, imageName){
 }
 
 var createImage = function(model, callback){
-  webshot('http://ks-stretch-goal.herokuapp.com/embed/'+model.id, './db/images/'+model.id+'.png', function(err) {
+
+  var options = {
+    screenSize: {
+      width: 620,
+      height: 245
+    },
+    shotSize: {
+      width: 620,
+      height: 245
+    }
+  }
+
+  webshot('http://ks-stretch-goal.herokuapp.com/embed/'+model.id, './db/images/'+model.id+'.png', options, function(err) {
     callback(err); 
   });
 }
