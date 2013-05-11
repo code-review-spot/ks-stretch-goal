@@ -25,6 +25,10 @@ var createImage = function(model, callback){
 }
 
 module.exports.get = function(req, res){
+
+  var embed_id = req.params.embed_id;
+  embed_id = embed_id.substring(0, embed_id.length-4);
+
   var image = function(err, model){
     if(err){
       //draw error image
@@ -40,17 +44,17 @@ module.exports.get = function(req, res){
           		drawImage(res, 'error');
           	}
           	else{
-          		drawImage(res, req.params.embed_id);
+          		drawImage(res, embed_id);
           	}
           });
         }
         else{
           //display image
-          drawImage(res, req.params.embed_id);
+          drawImage(res, embed_id);
         }
       });
     }
   }
 
-  DB.get(req.params.embed_id, image);
+  DB.get(embed_id, image);
 }
