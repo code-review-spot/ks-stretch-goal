@@ -1,3 +1,5 @@
+var webshot = require('webshot');
+
 var drawImage = function(res, imageName){
 	var img = FS.readFileSync('./db/images/'+imageName+'.png');
   res.writeHead(200, {'Content-Type': 'image/png' });
