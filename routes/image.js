@@ -19,7 +19,7 @@ module.exports.get = function(req, res){
       drawImage(res, 'error');
     }
     else{
-      var update_time = model.update_time;
+      var update_time = false; //model.update_time;
       model.update(function(err, new_model){
         if(new_model.update_time!=update_time){
           //create new image
