@@ -10,10 +10,12 @@ var createImage = function(model, callback){
 
   var options = {
     screenSize: {
-      width: 620
+      width: 620,
+      height: 'all'
     },
     shotSize: {
-      width: 620
+      width: 620,
+      height: 'all'
     }
   }
 
