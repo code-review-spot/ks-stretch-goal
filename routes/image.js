@@ -20,6 +20,8 @@ var createImage = function(model, callback){
   }
 
   webshot('http://ks-stretch-goal.herokuapp.com/embed/'+model.id, './db/images/'+model.id+'.png', options, function(err) {
+    model.png_update_time = model.update_time;
+    model.save();
     callback(err); 
   });
 }
@@ -34,25 +36,20 @@ module.exports.get = function(req, res){
       //draw error image
       drawImage(res, 'error');
     }
-    else{
-      var update_time = false; //model.update_time;
-      model.update(function(err, new_model){
-        if(new_model.update_time!=update_time){
-          //create new image
-          createImage(new_model, function(err){
-          	if(err){
-          		drawImage(res, 'error');
-          	}
-          	else{
-          		drawImage(res, embed_id);
-          	}
-          });
-        }
-        else{
-          //display image
-          drawImage(res, embed_id);
-        }
+    else if(model.update_time!=model.png_update_time){
+      //create new image
+      createImage(new_model, function(err){
+      	if(err){
+      		drawImage(res, 'error');
+      	}
+      	else{
+      		drawImage(res, embed_id);
+      	}
       });
+    }
+    else{
+      //display image
+      drawImage(res, embed_id);
     }
   }
 

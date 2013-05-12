@@ -7,7 +7,7 @@ module.exports.get = function(req, res){
     else{
       model.update(function(err, model){
         console.log(model);
-        res.render('embed', model);
+        res.render('displays/'+model.display, model);
       });
     }
   }
