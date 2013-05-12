@@ -17,6 +17,7 @@ module.exports = function(app) {
     data.goal = req.body.goal;
     data.project_url = req.body.url;
     data.explain = req.body.explain;
+    data.display = "standard";
 
     var callback = function(err, model){
       if(err){
