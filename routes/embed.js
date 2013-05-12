@@ -13,4 +13,5 @@ module.exports.get = function(req, res){
   }
 
   DB.get(req.params.embed_id, embed);
+  //GA.event("embed", "get", req.params.embed_id, req.params.embed_id);
 }

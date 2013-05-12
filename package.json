@@ -10,7 +10,8 @@
     "ejs": "*",
     "request": "2.21.0",
     "cheerio": "0.11.0",
-    "webshot": "0.3.5"
+    "webshot": "0.3.5",
+    "ga": "0.0.2"
   },
   "engines": {
     "node": "0.8.x",
