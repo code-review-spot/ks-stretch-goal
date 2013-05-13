@@ -1,33 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Stretch Goal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-40823195-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
-    
+        <% include includes/headtag %>
   </head>
   <body>
-  	<div class="container">
-  		<div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-        </ul>
-        <h3 class="muted">Stretch Goal</h3>
+    <div class="container">
+      <div class="masthead">
+        <% include includes/masthead %>
       </div>
 
       <div class="jumbotron">

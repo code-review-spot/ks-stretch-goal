@@ -7,6 +7,11 @@ module.exports = function(app) {
       res.render('home');
   });
 
+  app.get('/beta', function(req, res){
+    res.render('beta');
+  });
+
+  /*
 
   app.get('/new', function(req, res){
     res.render('new');
@@ -38,6 +43,8 @@ module.exports = function(app) {
   app.get('/display/:embed_id', function(req, res){
     res.render('display', {id:req.params.embed_id});
   });
+
+  */
 
   app.get('/embed/:embed_id', embed.get);
 
