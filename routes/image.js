@@ -4,7 +4,6 @@ var drawImage = function(res, imageName){
 	var img = FS.readFileSync('./db/images/'+imageName+'.png');
   res.writeHead(200, {'Content-Type': 'image/png' });
   res.end(img, 'binary');
-  GA.page('image/'+imageName+'.png');
 }
 
 var createImage = function(model, callback){
@@ -36,23 +35,31 @@ module.exports.get = function(req, res){
     if(err){
       //draw error image
       drawImage(res, 'error');
+      track(req, 'error');
     }
     else if(model.needsUpdate() || model.update_time!=model.png_update_time){
       //create new image
       createImage(model, function(err){
       	if(err){
       		drawImage(res, 'error');
+          track(req, 'error');
       	}
       	else{
       		drawImage(res, embed_id);
+          track(req, embed_id);
       	}
       });
     }
     else{
       //display image
       drawImage(res, embed_id);
+      track(req, embed_id);
     }
   }
 
   DB.get(embed_id, image);
+}
+
+var track = function(req, image){
+  GA.page(image, "/image/"+image+".png", req.get('Referer'));
 }

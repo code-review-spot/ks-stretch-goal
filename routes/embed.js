@@ -13,5 +13,5 @@ module.exports.get = function(req, res){
 
   DB.get(req.params.embed_id, embed);
 
-  GA.page('');
+  GA.page(req.params.embed_id, "/embed/"+req.params.embed_id, req.get('Referer'));
 }
