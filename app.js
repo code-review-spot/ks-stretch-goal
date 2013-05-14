@@ -1,7 +1,8 @@
 DB = require('./lib/model');
 FS = require('fs');
 BASE_URL = "http://ks-stretch-goal.herokuapp.com/";
-GA = require('./lib/ga')("UA-40823195-1", BASE_URL);
+GA = require('./lib/ga');
+GA.init("UA-40823195-1", BASE_URL);
 
 var express = require('express')
 var path = require('path');
