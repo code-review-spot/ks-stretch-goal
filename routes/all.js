@@ -4,10 +4,10 @@ var embed = require('./embed');
 module.exports = function(app) {
 
   app.get('/', function(req, res) {
-      res.render('home');
+    res.render('home');
   });
 
-  app.get('/beta', function(req, res){
+  app.get('/beta', function(req, res) {
     res.render('beta');
   });
 

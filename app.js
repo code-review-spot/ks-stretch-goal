@@ -10,7 +10,7 @@ var path = require('path');
 
 var app = express();
 
-app.configure(function(){
+app.configure(function() {
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -24,10 +24,10 @@ app.configure(function(){
 
 require('./routes/all')(app);
 
-var server = require('http').createServer(app)
+var server = require('http')
+  .createServer(app)
 
 var port = process.env.PORT || 3000;
 server.listen(port);
 
-console.log("Listening port "+port);
-
+console.log("Listening port " + port);
